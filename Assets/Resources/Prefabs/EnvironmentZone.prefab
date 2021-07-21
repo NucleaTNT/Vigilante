@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7397675294149593794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7397675294149593793}
+  - component: {fileID: 7397675294149593792}
+  - component: {fileID: 7397675294149593799}
+  - component: {fileID: 7397675294149593796}
+  - component: {fileID: 7397675294149593797}
+  m_Layer: 0
+  m_Name: EnvironmentZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7397675294149593793
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397675294149593794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7397675294149593792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397675294149593794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96498fb94a7b2045923c4fcc4a64c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStartsInside: 1
+  environmentType: 0
+--- !u!50 &7397675294149593799
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397675294149593794}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &7397675294149593796
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397675294149593794}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 7397675294149593797}
+    m_ColliderPaths:
+    - - X: 45797600
+        Y: -24692534
+      - X: -5363359
+        Y: -24811242
+      - X: -5610730
+        Y: -49589244
+      - X: 9884295
+        Y: -65791288
+      - X: 46476744
+        Y: -62671656
+      - X: 44663540
+        Y: -59379496
+      - X: 55783912
+        Y: -51953316
+      - X: 56241184
+        Y: -34190396
+      - X: 47294664
+        Y: -33557648
+      - X: 46039680
+        Y: -24692534
+      - X: 46039680
+        Y: -24692534
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 0.9884208, y: -6.57912}
+      - {x: 4.6476502, y: -6.2671223}
+      - {x: 4.466376, y: -5.9379354}
+      - {x: 5.5783916, y: -5.195318}
+      - {x: 5.6240907, y: -3.4190376}
+      - {x: 4.729463, y: -3.3557425}
+      - {x: 4.6039433, y: -2.4692535}
+      - {x: -0.5363362, y: -2.481153}
+      - {x: -0.56106573, y: -4.958932}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!60 &7397675294149593797
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7397675294149593794}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 4.57976, y: -2.4692533}
+      - {x: -0.5363359, y: -2.4811242}
+      - {x: -0.56107306, y: -4.9589243}
+      - {x: 0.98842955, y: -6.5791287}
+      - {x: 4.6476746, y: -6.2671657}
+      - {x: 4.466354, y: -5.9379497}
+      - {x: 5.578391, y: -5.1953316}
+      - {x: 5.6241183, y: -3.4190395}
+      - {x: 4.7294664, y: -3.3557646}
+      - {x: 4.603968, y: -2.4692533}
+      - {x: 4.603968, y: -2.4692533}
