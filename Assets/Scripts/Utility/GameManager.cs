@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     private void HandleInput()
     {
         if (Input.GetKeyDown(KeyCode.C)) ToggleChangeLog();
-        if (Input.GetKeyDown(KeyCode.D)) ToggleDebugInformation();
+        if (Input.GetKeyDown(KeyCode.V)) ToggleDebugInformation();
         if (Input.GetKeyDown(KeyCode.Space) && changeLogPanel.activeInHierarchy) ToggleConsole();
     }
 
