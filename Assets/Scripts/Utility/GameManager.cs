@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,7 +6,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    #region Fields
+    #region Properties
+
     // Funky singleton stuff
     private static GameManager instance;
     public static GameManager Instance => instance;
@@ -47,12 +49,14 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
     {
         Debug.Log($"[GameManager](OnSceneLoaded): Loaded Scene \"{scene.name}\".");
-        if (wasFadeEntry) GameObject.FindGameObjectWithTag("VCam").GetComponent<Animator>().Play("FadeIn");
+        if (wasFadeEntry)
+            try { GameObject.FindGameObjectWithTag("VCam").GetComponent<Animator>().Play("FadeIn"); } 
+            catch (NullReferenceException e) { PrintToConsole("GameManager", "OnSceneLoaded", "Couldn't play FadeIn animation (was virtual camera disabled?).", LogType.Error); }
     }
 
     private void SingletonCheck()
     {
-        if (instance && instance != this) { Object.Destroy(this.gameObject); return; }
+        if (instance && instance != this) { UnityEngine.Object.Destroy(this.gameObject); return; }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
@@ -67,7 +71,6 @@ public class GameManager : MonoBehaviour
     {
         debugCanvasObj.SetActive(!debugCanvasObj.activeInHierarchy);
     }
-
 
     private void ToggleConsole()
     {
@@ -86,6 +89,17 @@ public class GameManager : MonoBehaviour
 
     #region Public Methods
 
+    public void PrintToConsole(string className, string methodName, string message, LogType logType = LogType.Log)
+    {
+        switch (logType)
+        {
+            case LogType.Assert: PrintToConsole("GameManager", "PrintToConsole", "Asserts are not supported.", LogType.Error); break;
+            case LogType.Error: Debug.LogError($"{{ERROR}}[{className}]({methodName}): {message}"); break;
+            case LogType.Exception: PrintToConsole("GameManager", "PrintToConsole", "Exceptions are not supported.", LogType.Error); break;
+            case LogType.Log: Debug.Log($"{{INFO}}[{className}]({methodName}): {message}"); break;
+            case LogType.Warning: Debug.LogWarning($"{{WARN}}[{className}]({methodName}): {message}"); break;
+        }
+    }
 
     #endregion
 
