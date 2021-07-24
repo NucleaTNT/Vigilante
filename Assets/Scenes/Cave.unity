@@ -151,16 +151,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 108048397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!114 &108048399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2158,13 +2177,62 @@ PrefabInstance:
     - target: {fileID: 1875226475777370436, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
         type: 3}
       propertyPath: changeLog
-      value: '[7/21/28] (v0.0.1.0)'
+      value: '[7/24/21] (v0.0.2.0)
+
+        Overworld Update!
+
+        Changes:
+
+        -
+        Added new Overworld Map
+
+        - New animated waterfalls
+
+        - Switched
+        to new Input System
+
+
+
+        Code Changes:
+
+        - Implemented PrintToConsole
+
+        -
+        Added some error catching/handling
+
+        - Rewrote inputs to utilise Unity''s
+        new InputSystem (much better than manually checking every key)'
       objectReference: {fileID: 0}
     - target: {fileID: 1875226475777370436, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
         type: 3}
+      propertyPath: changeLogText
+      value: 
+      objectReference: {fileID: 488519093}
+    - target: {fileID: 1875226475777370436, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
+        type: 3}
       propertyPath: versionNumber
-      value: 0.0.1.0
+      value: 0.0.2.0
       objectReference: {fileID: 0}
+    - target: {fileID: 1875226475777370436, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
+        type: 3}
+      propertyPath: changeLogPanel
+      value: 
+      objectReference: {fileID: 488519094}
+    - target: {fileID: 1875226475777370436, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
+        type: 3}
+      propertyPath: debugCanvasObj
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875226475777370436, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
+        type: 3}
+      propertyPath: showDebugScreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875226475777370436, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
+        type: 3}
+      propertyPath: versionNumberText
+      value: 
+      objectReference: {fileID: 488519095}
     - target: {fileID: 4136432397382213992, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
         type: 3}
       propertyPath: m_Name
@@ -2173,7 +2241,7 @@ PrefabInstance:
     - target: {fileID: 4136432397382213995, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4136432397382213995, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
         type: 3}
@@ -2227,6 +2295,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb, type: 3}
+--- !u!114 &488519093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6415677567813400404, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
+    type: 3}
+  m_PrefabInstance: {fileID: 488519092}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &488519094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2615673568788942433, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
+    type: 3}
+  m_PrefabInstance: {fileID: 488519092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &488519095 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6628035322666145165, guid: e7307cbbc5a9d6c4d9e9e205f2a74bbb,
+    type: 3}
+  m_PrefabInstance: {fileID: 488519092}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &519420031 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 3416713052503362209, guid: 7715522b52c871f4c8d97d738d734ab2,
@@ -2326,7 +2424,7 @@ RectTransform:
   m_Children:
   - {fileID: 469094032}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2370,7 +2468,7 @@ Transform:
   - {fileID: 1701049396}
   - {fileID: 1071998491}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1542166153
 PrefabInstance:
@@ -8354,6 +8452,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StartRoomVCam
+      objectReference: {fileID: 0}
+    - target: {fileID: 8355723938054906839, guid: 1d9f4c20d67687449bcd8c1d0185b5a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8923050864962154631, guid: 1d9f4c20d67687449bcd8c1d0185b5a2,
         type: 3}
@@ -19094,7 +19197,7 @@ PrefabInstance:
     - target: {fileID: 2933209485050415335, guid: f11befa5ea301124ba0434a92d8d4ab3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2933209485050415335, guid: f11befa5ea301124ba0434a92d8d4ab3,
         type: 3}
@@ -19168,7 +19271,7 @@ PrefabInstance:
     - target: {fileID: 3416713052503362142, guid: 7715522b52c871f4c8d97d738d734ab2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3885999
+      value: -1.3813868
       objectReference: {fileID: 0}
     - target: {fileID: 3416713052503362142, guid: 7715522b52c871f4c8d97d738d734ab2,
         type: 3}

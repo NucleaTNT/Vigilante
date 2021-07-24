@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    #region Properties
+    #region Private Properties
 
     // Funky singleton stuff
     private static GameManager instance;
@@ -27,16 +28,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject changeLogPanel;
     [SerializeField] private Text changeLogText;
 
+    // Input Handling
+    private MainInputMap _MainInputMap;
+
+    #endregion
+
+    #region Public Properties
+
+    public MainInputMap MainInputMap { get; private set; }
+
     #endregion
 
     #region Private Methods
-
-    private void HandleInput()
-    {
-        if (Input.GetKeyDown(KeyCode.C)) ToggleChangeLog();
-        if (Input.GetKeyDown(KeyCode.V)) ToggleDebugInformation();
-        if (Input.GetKeyDown(KeyCode.Space) && changeLogPanel.activeInHierarchy) ToggleConsole();
-    }
 
     private void InitializeDebugScreen()
     {
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour
         Debug.Log($"[GameManager](OnSceneLoaded): Loaded Scene \"{scene.name}\".");
         if (wasFadeEntry)
             try { GameObject.FindGameObjectWithTag("VCam").GetComponent<Animator>().Play("FadeIn"); } 
-            catch (NullReferenceException e) { PrintToConsole("GameManager", "OnSceneLoaded", "Couldn't play FadeIn animation (was virtual camera disabled?).", LogType.Error); }
+            catch (NullReferenceException) { PrintToConsole("GameManager", "OnSceneLoaded", "Couldn't play FadeIn animation (was virtual camera disabled?).", LogType.Error); }
     }
 
     private void SingletonCheck()
@@ -61,27 +64,25 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private void ToggleChangeLog()
+    private void ToggleConsole(InputAction.CallbackContext ctx)
     {
         Time.timeScale = changeLogPanel.activeInHierarchy ? 1f : 0f;
         changeLogPanel.SetActive(!changeLogPanel.activeInHierarchy);
     }
-    
-    private void ToggleDebugInformation()
-    {
-        debugCanvasObj.SetActive(!debugCanvasObj.activeInHierarchy);
-    }
 
-    private void ToggleConsole()
+    private void ToggleConsoleMode(InputAction.CallbackContext ctx)
     {
-        if (changeLogText.alignment == TextAnchor.UpperLeft)    // Console is NOT currently enabled.
+        if (changeLogPanel.activeInHierarchy)
         {
-            changeLogText.alignment = TextAnchor.LowerCenter;
-            changeLogText.text = consoleOutput;
-        } else  // Console IS already enabled (switch back)
-        {
-            changeLogText.alignment = TextAnchor.UpperLeft;
-            changeLogText.text = changeLog;
+            if (changeLogText.alignment == TextAnchor.UpperLeft)    // Console is NOT currently enabled.
+            {
+                changeLogText.alignment = TextAnchor.LowerCenter;
+                changeLogText.text = consoleOutput;
+            } else  // Console IS already enabled (switch back)
+            {
+                changeLogText.alignment = TextAnchor.UpperLeft;
+                changeLogText.text = changeLog;
+            }
         }
     }
 
@@ -89,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     #region Public Methods
 
-    public void PrintToConsole(string className, string methodName, string message, LogType logType = LogType.Log)
+    public static void PrintToConsole(string className, string methodName, string message, LogType logType = LogType.Log)
     {
         switch (logType)
         {
@@ -166,7 +167,42 @@ public class GameManager : MonoBehaviour
     private void Awake() 
     { 
         SingletonCheck();
+        
+        this.MainInputMap = new MainInputMap();
         SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnEnable()
+    {
+        this.MainInputMap.GameManager.ToggleConsole.performed += ToggleConsole;
+        this.MainInputMap.GameManager.ToggleConsole.Enable();
+
+        this.MainInputMap.GameManager.ToggleConsoleMode.performed += ToggleConsoleMode;
+        this.MainInputMap.GameManager.ToggleConsoleMode.Enable();
+        
+        this.MainInputMap.GameManager.ToggleDebugScreen.performed += (InputAction.CallbackContext ctx) => debugCanvasObj.SetActive(!debugCanvasObj.activeInHierarchy);
+        this.MainInputMap.GameManager.ToggleDebugScreen.Enable();
+    
+        this.MainInputMap.GameManager.Quit.performed += (InputAction.CallbackContext ctx) => Application.Quit();
+        this.MainInputMap.GameManager.Quit.Enable();
+    }
+
+    private void OnDisable()
+    {
+        try
+        {
+            this.MainInputMap.GameManager.ToggleConsole.performed -= ToggleConsole;
+            this.MainInputMap.GameManager.ToggleConsole.Disable();
+
+            this.MainInputMap.GameManager.ToggleConsoleMode.performed -= ToggleConsoleMode;
+            this.MainInputMap.GameManager.ToggleConsoleMode.Disable();
+            
+            this.MainInputMap.GameManager.ToggleDebugScreen.performed -= (InputAction.CallbackContext ctx) => debugCanvasObj.SetActive(!debugCanvasObj.activeInHierarchy);
+            this.MainInputMap.GameManager.ToggleDebugScreen.Disable();
+
+            this.MainInputMap.GameManager.Quit.performed -= (InputAction.CallbackContext ctx) => Application.Quit();
+            this.MainInputMap.GameManager.Quit.Disable();
+        } catch (NullReferenceException) { /* Object probably destroyed by singleton check */ }
     }
 
     private void Start()
@@ -176,11 +212,6 @@ public class GameManager : MonoBehaviour
 
         Application.logMessageReceived += (string logString, string stackTrace, LogType type) => consoleOutput += $"{logString}\n";
         InitializeDebugScreen();
-    }
-
-    private void Update()
-    {
-        HandleInput();
     }
 
     #endregion
