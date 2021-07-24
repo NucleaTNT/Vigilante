@@ -2,15 +2,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public abstract class Interactable : MonoBehaviour
 {
     protected bool isPlayerInRange = false;
     [SerializeField] protected Emote playerInRangeEmote;
+    protected MainInputMap inputMap;
+
     [Tooltip("OnInteract Events")] public List<UnityEvent> onInteractEvents;
 
-    private void Action() { foreach (UnityEvent e in onInteractEvents) e.Invoke(); }
+    private void Action(InputAction.CallbackContext ctx) { foreach (UnityEvent e in onInteractEvents) e.Invoke(); }
     
     #region Virtual Methods
 
@@ -49,10 +52,22 @@ public abstract class Interactable : MonoBehaviour
     #endregion
     
     #region MonoBehaviour Callbacks
-    
-    public void Update()
+
+    private void OnEnable()
     {
-        if (Input.GetKeyDown("e") && isPlayerInRange) Action();
+        inputMap.Player.Use.performed += Action;
+        inputMap.Player.Use.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputMap.Player.Use.performed -= Action;
+        inputMap.Player.Use.Disable();
+    }
+    
+    private void Awake()
+    {
+        inputMap = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MainInputMap;
     }
 
     #endregion

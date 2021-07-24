@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth;
 
-    protected GameManager GameManager;
+    private GameManager _GameManager;
 
     #endregion
 
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
             if (_EmoteManager != null) return _EmoteManager;
             else 
             {
-                Debug.LogError("Player Object is Missing Requested EmoteManager Reference!");
+                GameManager.PrintToConsole("Player", "EmoteManager{GET}", "Player Object/Child is Missing Requested EmoteManager Component!", LogType.Error);
                 return null;
             }
         }
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
             if (_PlayerAnimation != null) return _PlayerAnimation;
             else 
             {
-                Debug.LogError("Player Object is Missing Requested PlayerAnimation Component!");
+                GameManager.PrintToConsole("Player", "PlayerAnimation{GET}", "Player Object is Missing Requested PlayerAnimation Component!", LogType.Error);
                 return null;
             }
         }
@@ -69,7 +69,7 @@ public class Player : MonoBehaviour
             if (_PlayerMovement != null) return _PlayerMovement;
             else 
             {
-                Debug.LogError("Player Object is Missing Requested PlayerMovement Component!");
+                GameManager.PrintToConsole("Player", "PlayerMovement{GET}", "Player Object is Missing Requested PlayerMovement Component!", LogType.Error);
                 return null;
             }
         }
@@ -77,6 +77,24 @@ public class Player : MonoBehaviour
         private set
         {
             _PlayerMovement = value;
+        }
+    }
+  
+    public GameManager GameManager 
+    { 
+        get
+        {
+            if (_GameManager != null) return _GameManager;
+            else 
+            {
+                GameManager.PrintToConsole("Player", "GameManager{GET}", "There is no active GameManager in current scene!", LogType.Error);
+                return null;
+            }
+        }
+        
+        private set
+        {
+            _GameManager = value;
         }
     }
   
@@ -116,13 +134,15 @@ public class Player : MonoBehaviour
 
     #region Private Methods
 
-    private void HandleInput() 
+    private void InitializeComponents() 
     {
-        // TODO: Remember to check if you're swimming before attacking
-        // if (Input.GetButtonDown("Fire1")) StartCoroutine(this.PlayerAttack.Attack());
-        // else
-        if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
-        PlayerMovement.MovePlayer();
+        this.GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        this.EmoteManager = gameObject.GetComponentInChildren<EmoteManager>();
+        this.PlayerAnimation = gameObject.GetComponent<PlayerAnimation>();
+        this.PlayerMovement = gameObject.GetComponent<PlayerMovement>();
+        this.Animator = gameObject.GetComponent<Animator>();
+        this.Rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        this.CurrentHealth = this.MaxHealth;
     }
 
     #endregion
@@ -149,27 +169,21 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        this.GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        this.EmoteManager = gameObject.GetComponentInChildren<EmoteManager>();
-        this.PlayerAnimation = gameObject.GetComponent<PlayerAnimation>();
-        this.PlayerMovement = gameObject.GetComponent<PlayerMovement>();
-        this.Animator = gameObject.GetComponent<Animator>();
-        this.Rigidbody = gameObject.GetComponent<Rigidbody2D>();
-        this.CurrentHealth = this.MaxHealth;
+        InitializeComponents();
     }
 
     private void Update()
     {
         switch (CurrentState)
         {
-            case PlayerState.STAGGER: break;
-            case PlayerState.ATTACK: break;
-            
+            case PlayerState.ATTACK:
+            case PlayerState.STAGGER: break; 
+
             case PlayerState.IDLE:
             case PlayerState.WALK:
             case PlayerState.SWIM:
             {
-                HandleInput();
+                PlayerMovement.MovePlayer();
                 break;
             }
         }
