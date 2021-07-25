@@ -12,27 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55ec1c9d496e0a4bb28ca07f7ad1e58, type: 3}
   m_Name: VersionInfo
   m_EditorClassIdentifier: 
-  VersionNumber: 0.0.2.1
-  ChangeLog: '[7/25/21] (v0.0.2.1)
+  VersionNumber: 0.0.3.0
+  ChangeLog: '[7/25/21] (v0.0.3.0)
 
-    Bug Fixes
-
-
-    Changes:
-
-    - Fixed movement
-    issue where player would get stuck when moving between tiles.
-
-    - Shortened
-    length of SouthEdgeCliff so the bottom of the waterfalls are visible.
+    Overworld Map Update
 
 
-    Code
-    Changes:
-
-    - Updated GameManager to use a Global ScriptableObject to hold
-    VersionNumber and ChangeLog to ensure constistency between instances.
-
-    -
-    Movement issue was caused by TilemapColliders not being used by CompositeColliders
-    *facepalm*'
+    - Base layer of
+    Overworld Map Completed.'

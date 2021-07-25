@@ -44,7 +44,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 6089956dfbb6f2a409933e6791f33ee3, type: 3}
-    totalSpriteSurfaceArea: 504780
+    totalSpriteSurfaceArea: 505548
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -103,8 +103,10 @@ SpriteAtlas:
   - {fileID: 1933500101653270567, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: 3074887630006476876, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: -6901846341700451881, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
+  - {fileID: 5649468536085351866, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: -6296458357604031197, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: 4000465176758196117, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
+  - {fileID: 7594525048525668793, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: -3320683573220661126, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: 1692243996005026413, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: 8666048538009857885, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
@@ -814,6 +816,7 @@ SpriteAtlas:
   - {fileID: -7786630058890134805, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: 3702605349958547509, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: 335437107707440903, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
+  - {fileID: 5460641065583701521, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: -5051578824244940018, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: 4871147469502312203, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: 1131489437056819327, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
@@ -1716,8 +1719,10 @@ SpriteAtlas:
   - Overworld_1072
   - Overworld_1008
   - Overworld_696
+  - Overworld_1073
   - Overworld_1063
   - Overworld_695
+  - Overworld_1074
   - Overworld_1062
   - Overworld_1058
   - Overworld_694
@@ -2427,6 +2432,7 @@ SpriteAtlas:
   - Overworld_553
   - Overworld_543
   - Overworld_290
+  - VOID
   - Overworld_542
   - Overworld_541
   - Overworld_540
