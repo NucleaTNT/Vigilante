@@ -16,15 +16,11 @@ public class GameManager : MonoBehaviour
     private static bool wasFadeEntry = true;
     private string consoleOutput;
     
-    [Header("Debug Fields"), Space(5)]
+    // Debug Screen Properties
+    [SerializeField] private VersionInfo versionInfo;
     [SerializeField] private bool showDebugScreen;
     [SerializeField] private GameObject debugCanvasObj;
-
-    public string versionNumber;
     [SerializeField] private Text versionNumberText;
-
-    [Space(5)]
-    [SerializeField, Multiline] private string changeLog; 
     [SerializeField] private GameObject changeLogPanel;
     [SerializeField] private Text changeLogText;
 
@@ -36,6 +32,7 @@ public class GameManager : MonoBehaviour
     #region Public Properties
 
     public MainInputMap MainInputMap { get; private set; }
+    public string VersionNumber { get; private set; }
 
     #endregion
 
@@ -44,9 +41,11 @@ public class GameManager : MonoBehaviour
     private void InitializeDebugScreen()
     {
         debugCanvasObj.SetActive(showDebugScreen);
-        versionNumberText.text = "v" + versionNumber;
 
-        changeLogText.text = changeLog;
+        this.VersionNumber = versionInfo.VersionNumber;
+        versionNumberText.text = "v" + this.VersionNumber;
+
+        changeLogText.text = versionInfo.ChangeLog;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
@@ -81,7 +80,7 @@ public class GameManager : MonoBehaviour
             } else  // Console IS already enabled (switch back)
             {
                 changeLogText.alignment = TextAnchor.UpperLeft;
-                changeLogText.text = changeLog;
+                changeLogText.text = versionInfo.ChangeLog;
             }
         }
     }

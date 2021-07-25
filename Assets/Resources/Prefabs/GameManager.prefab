@@ -279,11 +279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbff4cd1810b704eb64e13356f422a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  versionInfo: {fileID: 11400000, guid: b9d42af5978bc4e498b6bf7504f72f4d, type: 2}
   showDebugScreen: 0
   debugCanvasObj: {fileID: 7028637840525506737}
-  versionNumber: 
   versionNumberText: {fileID: 6628035322666145165}
-  changeLog: 
   changeLogPanel: {fileID: 2615673568788942433}
   changeLogText: {fileID: 6415677567813400404}
 --- !u!1 &6755349467026010753
