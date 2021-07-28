@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -27,12 +28,26 @@ public class GameManager : MonoBehaviour
     // Input Handling
     private MainInputMap _MainInputMap;
 
+    // Tiles
+    private Tilemap[] tilemaps = Array.Empty<Tilemap>();
+    [SerializeField] private Season _CurrentSeason = Season.SPRING;
+
     #endregion
 
     #region Public Properties
 
     public MainInputMap MainInputMap { get; private set; }
     public string VersionNumber { get; private set; }
+    public Season CurrentSeason 
+    { 
+        get { return _CurrentSeason; }
+        
+        set
+        {
+            _CurrentSeason = value;
+            UpdateAllTilemaps();
+        }
+    }
 
     #endregion
 
@@ -46,6 +61,18 @@ public class GameManager : MonoBehaviour
         versionNumberText.text = "v" + this.VersionNumber;
 
         changeLogText.text = versionInfo.ChangeLog;
+    }
+
+    private void GetAllTilemaps() 
+    { 
+        this.tilemaps = GameObject.FindObjectsOfType<Tilemap>();
+        if (this.tilemaps.Length == 0) PrintToConsole("GameManager", "UpdateAllTilemaps", "No tilemaps found!", LogType.Warning); 
+    }
+
+    private void UpdateAllTilemaps() 
+    {
+        if (this.tilemaps.Length == 0) GetAllTilemaps();
+        foreach (Tilemap tilemap in this.tilemaps) tilemap.RefreshAllTiles();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
@@ -166,6 +193,7 @@ public class GameManager : MonoBehaviour
     private void Awake() 
     { 
         SingletonCheck();
+        UpdateAllTilemaps();
         
         this.MainInputMap = new MainInputMap();
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -211,6 +239,14 @@ public class GameManager : MonoBehaviour
 
         Application.logMessageReceived += (string logString, string stackTrace, LogType type) => consoleOutput += $"{logString}\n";
         InitializeDebugScreen();
+    }
+
+    float seasonTimer = 0;
+    int seasonCount = 0;
+    private void Update()
+    {
+        seasonTimer += Time.deltaTime;
+        if (seasonTimer > 5) { CurrentSeason = (Season)(seasonCount++ % 4); seasonTimer = 0; }
     }
 
     #endregion
