@@ -212,6 +212,9 @@ public class GameManager : MonoBehaviour
     
         this.MainInputMap.GameManager.Quit.performed += (InputAction.CallbackContext ctx) => Application.Quit();
         this.MainInputMap.GameManager.Quit.Enable();
+
+        this.MainInputMap.Player.Use.performed += (InputAction.CallbackContext ctx) => CurrentSeason = (Season)(((int)CurrentSeason + 1) % 4);
+        this.MainInputMap.Player.Use.Enable();
     }
 
     private void OnDisable()
@@ -229,6 +232,9 @@ public class GameManager : MonoBehaviour
 
             this.MainInputMap.GameManager.Quit.performed -= (InputAction.CallbackContext ctx) => Application.Quit();
             this.MainInputMap.GameManager.Quit.Disable();
+
+            this.MainInputMap.Player.Use.performed -= (InputAction.CallbackContext ctx) => CurrentSeason = (Season)(((int)CurrentSeason + 1) % 4);
+            this.MainInputMap.Player.Use.Disable();
         } catch (NullReferenceException) { /* Object probably destroyed by singleton check */ }
     }
 
@@ -239,14 +245,6 @@ public class GameManager : MonoBehaviour
 
         Application.logMessageReceived += (string logString, string stackTrace, LogType type) => consoleOutput += $"{logString}\n";
         InitializeDebugScreen();
-    }
-
-    float seasonTimer = 0;
-    int seasonCount = 0;
-    private void Update()
-    {
-        seasonTimer += Time.deltaTime;
-        if (seasonTimer > 5) { CurrentSeason = (Season)(seasonCount++ % 4); seasonTimer = 0; }
     }
 
     #endregion

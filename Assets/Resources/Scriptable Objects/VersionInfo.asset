@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55ec1c9d496e0a4bb28ca07f7ad1e58, type: 3}
   m_Name: VersionInfo
   m_EditorClassIdentifier: 
-  VersionNumber: 0.0.3.0
-  ChangeLog: '[7/25/21] (v0.0.3.0)
+  VersionNumber: 0.0.4.1
+  ChangeLog: '[7/28/21] (v0.0.4.1)
 
-    Overworld Map Update
+    Season Update
 
 
-    - Base layer of
-    Overworld Map Completed.'
+    - Rework of entire tileset
+
+    -
+    Currently pressing [E] switches the season - slight lag spike when doing so'
