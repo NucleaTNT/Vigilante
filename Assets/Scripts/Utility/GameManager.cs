@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -27,12 +28,26 @@ public class GameManager : MonoBehaviour
     // Input Handling
     private MainInputMap _MainInputMap;
 
+    // Tiles
+    private Tilemap[] tilemaps = Array.Empty<Tilemap>();
+    [SerializeField] private Season _CurrentSeason = Season.SPRING;
+
     #endregion
 
     #region Public Properties
 
     public MainInputMap MainInputMap { get; private set; }
     public string VersionNumber { get; private set; }
+    public Season CurrentSeason 
+    { 
+        get { return _CurrentSeason; }
+        
+        set
+        {
+            _CurrentSeason = value;
+            UpdateAllTilemaps();
+        }
+    }
 
     #endregion
 
@@ -46,6 +61,18 @@ public class GameManager : MonoBehaviour
         versionNumberText.text = "v" + this.VersionNumber;
 
         changeLogText.text = versionInfo.ChangeLog;
+    }
+
+    private void GetAllTilemaps() 
+    { 
+        this.tilemaps = GameObject.FindObjectsOfType<Tilemap>();
+        if (this.tilemaps.Length == 0) PrintToConsole("GameManager", "UpdateAllTilemaps", "No tilemaps found!", LogType.Warning); 
+    }
+
+    private void UpdateAllTilemaps() 
+    {
+        if (this.tilemaps.Length == 0) GetAllTilemaps();
+        foreach (Tilemap tilemap in this.tilemaps) tilemap.RefreshAllTiles();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
@@ -166,6 +193,7 @@ public class GameManager : MonoBehaviour
     private void Awake() 
     { 
         SingletonCheck();
+        UpdateAllTilemaps();
         
         this.MainInputMap = new MainInputMap();
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -184,6 +212,9 @@ public class GameManager : MonoBehaviour
     
         this.MainInputMap.GameManager.Quit.performed += (InputAction.CallbackContext ctx) => Application.Quit();
         this.MainInputMap.GameManager.Quit.Enable();
+
+        this.MainInputMap.Player.Use.performed += (InputAction.CallbackContext ctx) => CurrentSeason = (Season)(((int)CurrentSeason + 1) % 4);
+        this.MainInputMap.Player.Use.Enable();
     }
 
     private void OnDisable()
@@ -201,6 +232,9 @@ public class GameManager : MonoBehaviour
 
             this.MainInputMap.GameManager.Quit.performed -= (InputAction.CallbackContext ctx) => Application.Quit();
             this.MainInputMap.GameManager.Quit.Disable();
+
+            this.MainInputMap.Player.Use.performed -= (InputAction.CallbackContext ctx) => CurrentSeason = (Season)(((int)CurrentSeason + 1) % 4);
+            this.MainInputMap.Player.Use.Disable();
         } catch (NullReferenceException) { /* Object probably destroyed by singleton check */ }
     }
 
