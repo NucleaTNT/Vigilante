@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aafcf01c21aaeda44b4945060060c18e, type: 3}
   m_Name: DebugVars
   m_EditorClassIdentifier: 
-  EnvironmentZoneOutputEnabled: 1
+  EnvironmentZoneOutputEnabled: 0
