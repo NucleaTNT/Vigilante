@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     
     // Debug Screen Properties
     [SerializeField] private VersionInfo versionInfo;
-    [SerializeField] private bool showDebugScreen;
+    private bool showDebugScreen;
     [SerializeField] private GameObject debugCanvasObj;
     [SerializeField] private Text versionNumberText;
     [SerializeField] private GameObject changeLogPanel;
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
     {
-        Debug.Log($"[GameManager](OnSceneLoaded): Loaded Scene \"{scene.name}\".");
+        GameManager.PrintToConsole("GameManager", "OnSceneLoaded", $"Loaded Scene \"{scene.name}\".");
         if (wasFadeEntry)
             try { GameObject.FindGameObjectWithTag("VCam").GetComponent<Animator>().Play("FadeIn"); } 
             catch (NullReferenceException) { PrintToConsole("GameManager", "OnSceneLoaded", "Couldn't play FadeIn animation (was virtual camera disabled?).", LogType.Error); }
@@ -121,10 +121,10 @@ public class GameManager : MonoBehaviour
         switch (logType)
         {
             case LogType.Assert: PrintToConsole("GameManager", "PrintToConsole", "Asserts are not supported.", LogType.Error); break;
-            case LogType.Error: Debug.LogError($"{{ERROR}}[{className}]({methodName}): {message}"); break;
+            case LogType.Error: Debug.LogError($"<color=#FF0000>{{ERROR}}[{className}]({methodName}): {message}</color>"); break;
             case LogType.Exception: PrintToConsole("GameManager", "PrintToConsole", "Exceptions are not supported.", LogType.Error); break;
-            case LogType.Log: Debug.Log($"{{INFO}}[{className}]({methodName}): {message}"); break;
-            case LogType.Warning: Debug.LogWarning($"{{WARN}}[{className}]({methodName}): {message}"); break;
+            case LogType.Log: Debug.Log($"<color=#53A8F5>{{INFO}}[{className}]({methodName}): {message}</color>"); break;
+            case LogType.Warning: Debug.LogWarning($"<color=#FFFF00>{{WARN}}[{className}]({methodName}): {message}</color>"); break;
         }
     }
 
@@ -136,15 +136,15 @@ public class GameManager : MonoBehaviour
     { 
         if (sceneName != null && sceneName != string.Empty) 
         { 
-            Debug.Log($"[GameManager](LoadScene): Loading Scene \"{sceneName}\"."); 
+            GameManager.PrintToConsole("GameManager", "LoadScene", $"Loading Scene \"{sceneName}\"."); 
             SceneManager.LoadScene(sceneName); 
         } 
-        else Debug.LogError("[GameManager](LoadScene): No sceneName provided!"); 
+        else GameManager.PrintToConsole("GameManager", "LoadScene", "No sceneName provided!"); 
     }
 
     public static void LoadScene(int buildIndex) 
     {
-        Debug.Log($"[GameManager](LoadScene): Loading Scene #{buildIndex}."); 
+        GameManager.PrintToConsole("GameManager", "LoadScene", $"Loading Scene #{buildIndex}."); 
         SceneManager.LoadScene(buildIndex); 
     }
 

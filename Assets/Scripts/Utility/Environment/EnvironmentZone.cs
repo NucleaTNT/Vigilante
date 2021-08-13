@@ -15,10 +15,19 @@ public class EnvironmentZone : MonoBehaviour
     [SerializeField] private EnvironmentType environmentType;
     private Player player;
 
+    private static bool isOutputEnabled;
+
+    private void Awake()
+    {
+        // By storing the variable in a ScriptableObject, it can be set in the inspector while still being static
+        isOutputEnabled = Resources.Load<DebugVars>("Scriptable Objects/DebugVars").EnvironmentZoneOutputEnabled;
+    }
+
     private void OnTriggerEnter2D(Collider2D other) 
     {
         if (playerStartsInside) { playerStartsInside = false; return; }
         if (other.CompareTag("Player")) player = other.GetComponent<Player>(); else return;
+        if (isOutputEnabled) GameManager.PrintToConsole("EnvironmentZone", "OnTriggerEnter2D", $"Player entered {environmentType} zone!");
 
         switch (environmentType)
         {
@@ -28,7 +37,7 @@ public class EnvironmentZone : MonoBehaviour
                 break;
             } 
             
-            case EnvironmentType.WATER: 
+            case EnvironmentType.WATER:
             {
                 player.IsSwimming = true;
                 break;
@@ -41,6 +50,7 @@ public class EnvironmentZone : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) 
     {
         if (other.CompareTag("Player")) player = other.GetComponent<Player>(); else return;
+        if (isOutputEnabled) GameManager.PrintToConsole("EnvironmentZone", "OnTriggerExit2D", $"Player left {environmentType} zone!");
 
         switch (environmentType)
         {

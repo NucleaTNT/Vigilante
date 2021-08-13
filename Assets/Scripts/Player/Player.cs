@@ -121,6 +121,8 @@ public class Player : MonoBehaviour
         get { return _isSwimming; }
         set 
         {
+            if (_isSwimming == value) return;   // Prevent duplicate calls from altering vars
+            
             _isSwimming = value;
             this.PlayerAnimation.UpdateSwimming();
             this.PlayerMovement.UpdateSwimming();
