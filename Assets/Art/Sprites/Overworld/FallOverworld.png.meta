@@ -7,7 +7,7 @@ TextureImporter:
     second: FallOverworld_0
   - first:
       213: -2020189916736232896
-    second: FallOverworld_13
+    second: FallOverworld_1
   - first:
       213: -1739728524913673764
     second: FallOverworld_2
@@ -25,7 +25,7 @@ TextureImporter:
     second: FallOverworld_6
   - first:
       213: -7526215261676802583
-    second: FallOverworld_13
+    second: FallOverworld_1
   - first:
       213: -8906271313441044374
     second: FallOverworld_8
@@ -43,7 +43,7 @@ TextureImporter:
     second: FallOverworld_12
   - first:
       213: 9147981088835398928
-    second: FallOverworld_13
+    second: FallOverworld_1
   - first:
       213: 606060951910054100
     second: FallOverworld_14
@@ -5525,6 +5525,48 @@ TextureImporter:
       bones: []
       spriteID: 8e999ccc6079f34a0800000000000000
       internalID: -6611399672495236632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallOverworld_219
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dea7dcec02260e00800000000000000
+      internalID: 1010532605299764948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FallOverworld_220
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d894f52fc7a824f0800000000000000
+      internalID: -853247621249853227
       vertices: []
       indices: 
       edges: []

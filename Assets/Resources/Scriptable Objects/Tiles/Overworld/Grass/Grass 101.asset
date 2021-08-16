@@ -34,11 +34,11 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  springSprite: {fileID: 8534502907144259148, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05,
+  springSprite: {fileID: -3934625637625935782, guid: 689ccc9d74380234e8f1a41ee431cc9f,
     type: 3}
   summerSprite: {fileID: 8534502907144259148, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05,
     type: 3}
-  fallSprite: {fileID: 8534502907144259148, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05,
+  fallSprite: {fileID: -853247621249853227, guid: 9caf4f85542e1e445b5660f638d1c154,
     type: 3}
-  winterSprite: {fileID: 8534502907144259148, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05,
+  winterSprite: {fileID: 8846353563053379912, guid: b5913d994f5f5c04a948c5e3fa5d7aa0,
     type: 3}

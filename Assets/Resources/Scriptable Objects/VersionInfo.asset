@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55ec1c9d496e0a4bb28ca07f7ad1e58, type: 3}
   m_Name: VersionInfo
   m_EditorClassIdentifier: 
-  VersionNumber: 0.0.4.3
+  VersionNumber: 0.0.4.2
   ChangeLog: '[7/28/21] (v0.0.4.2)
 
     General Bug Fixes
