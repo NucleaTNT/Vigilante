@@ -45,7 +45,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: 6089956dfbb6f2a409933e6791f33ee3, type: 3}
     - {fileID: 102900000, guid: 2890f0e1d88415d4182556a9119b5c81, type: 3}
-    totalSpriteSurfaceArea: 671180
+    totalSpriteSurfaceArea: 670924
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -289,7 +289,7 @@ SpriteAtlas:
   - {fileID: -6989023251894536767, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: 3831967486130845516, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: 3022366248252531181, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
-  - {fileID: 9147981088835398928, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
+  - {fileID: -7526215261676802583, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: -8397456325344176467, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: 1708966161285962496, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: 5148077717101057093, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
@@ -362,7 +362,6 @@ SpriteAtlas:
   - {fileID: 6010074319374000814, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: -3482205062260086540, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: 8470168291526897229, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
-  - {fileID: 1010532605299764948, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: 4523946535969260437, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: 223710662979628911, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: -2299571832378230377, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
@@ -2625,7 +2624,6 @@ SpriteAtlas:
   - FallOverworld_113
   - FallOverworld_112
   - FallOverworld_218
-  - FallOverworld_219
   - FallOverworld_216
   - FallOverworld_217
   - FallOverworld_214
