@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
 
     private void InitializeComponents() 
     {
-        this.GameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        this.GameManager = GameManager.Instance;
         this.EmoteManager = gameObject.GetComponentInChildren<EmoteManager>();
         this.PlayerAnimation = gameObject.GetComponent<PlayerAnimation>();
         this.PlayerMovement = gameObject.GetComponent<PlayerMovement>();

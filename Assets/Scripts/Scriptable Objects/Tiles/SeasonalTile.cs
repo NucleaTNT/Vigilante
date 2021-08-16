@@ -15,15 +15,9 @@ public class SeasonalTile : Tile
     [SerializeField] Sprite springSprite, summerSprite, fallSprite, winterSprite;
     private GameManager gameManager = null;
 
-    private void GetGameManager()
-    {
-        GameObject gameManObj = GameObject.FindGameObjectWithTag("GameManager");
-        if (gameManObj != null) gameManager = gameManObj.GetComponent<GameManager>();
-    }
-
     public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject gameObj)
     {
-        GetGameManager();
+        gameManager = GameManager.Instance;
         return base.StartUp(position, tilemap, gameObj);
     }
 
@@ -45,7 +39,7 @@ public class SeasonalTile : Tile
         else
         {
             tileData.sprite = springSprite; // Default to spring
-            GetGameManager();
+            gameManager = GameManager.Instance;
         }
     }
 }

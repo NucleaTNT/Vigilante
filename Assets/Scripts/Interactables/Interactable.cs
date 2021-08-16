@@ -67,7 +67,7 @@ public abstract class Interactable : MonoBehaviour
     
     private void Awake()
     {
-        inputMap = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MainInputMap;
+        inputMap = GameManager.Instance.MainInputMap;
     }
 
     #endregion
