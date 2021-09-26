@@ -9,7 +9,8 @@ namespace Launcher
 {
     class Program
     {
-        private const string    LAUNCHER_VERSION_STRING = "1.1",
+        private const string    LAUNCHER_VERSION_STRING = "1.2",
+                                APP_NAME                = "Vigilante",
      
                                 GITHUB_BUILD_URL        = @"https://www.github.com/NucleaTNT/Vigilante/releases/latest/download/Build.zip",
                                 GITHUB_LAUNCHER_URL     = @"https://www.github.com/NucleaTNT/Vigilante/releases/latest/download/Launcher.exe",
@@ -24,7 +25,7 @@ namespace Launcher
 
         private static void Main(string[] args)
         {
-            Console.Title = $"Vigilante Launcher v{LAUNCHER_VERSION_STRING}";
+            Console.Title = $"{APP_NAME} Launcher v{LAUNCHER_VERSION_STRING}";
 
             DeletePreviousLauncher();
             if (CheckForAppUpdate()) UpdateApplication();

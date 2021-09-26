@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12da016e97b20e34b8c6d6a2afc56e68, type: 3}
+  m_Script: {fileID: 11500000, guid: 3cf24adf986e56843a6b9310ee754f54, type: 3}
   m_Name: Grass 70
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 0}
@@ -34,11 +34,11 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
-  springSprite: {fileID: -8845329299655623019, guid: 689ccc9d74380234e8f1a41ee431cc9f,
+  _springSprite: {fileID: -8845329299655623019, guid: 689ccc9d74380234e8f1a41ee431cc9f,
     type: 3}
-  summerSprite: {fileID: 2405358125290490579, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05,
+  _summerSprite: {fileID: 2405358125290490579, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05,
     type: 3}
-  fallSprite: {fileID: -8107716517812596796, guid: 9caf4f85542e1e445b5660f638d1c154,
+  _fallSprite: {fileID: -8107716517812596796, guid: 9caf4f85542e1e445b5660f638d1c154,
     type: 3}
-  winterSprite: {fileID: -6844383425784116708, guid: b5913d994f5f5c04a948c5e3fa5d7aa0,
+  _winterSprite: {fileID: -6844383425784116708, guid: b5913d994f5f5c04a948c5e3fa5d7aa0,
     type: 3}
