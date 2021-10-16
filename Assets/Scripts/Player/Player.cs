@@ -1,3 +1,4 @@
+using Dev.NucleaTNT.Vigilante.Interfaces;
 using Dev.NucleaTNT.Vigilante.UI;
 using Dev.NucleaTNT.Vigilante.Utilities;
 using UnityEngine;
@@ -14,7 +15,7 @@ namespace Dev.NucleaTNT.Vigilante.PlayerScripts
         STAGGER
     }
     
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IEnvironment
     {
         #region Private Properties
     
@@ -23,7 +24,6 @@ namespace Dev.NucleaTNT.Vigilante.PlayerScripts
         private PlayerMovement _playerMovement;
         [SerializeField] private int _currentHealth;
         [SerializeField] private int _maxHealth;
-        [SerializeField] private bool _isAlive;
     
         private GameManager _GameManager;
     
@@ -38,7 +38,7 @@ namespace Dev.NucleaTNT.Vigilante.PlayerScripts
                 if (_emoteManager != null) return _emoteManager;
                 else 
                 {
-                    GameManager.PrintToConsole("Player", "EmoteManager{GET}", "Player Object/Child is Missing Requested EmoteManager Component!", LogType.Error);
+                    GameManager.PrintToConsole("Player", "EmoteManager<GET>", "Player Object/Child is Missing Requested EmoteManager Component!", LogType.Error);
                     return null;
                 }
             }
@@ -56,7 +56,7 @@ namespace Dev.NucleaTNT.Vigilante.PlayerScripts
                 if (_playerAnimation != null) return _playerAnimation;
                 else 
                 {
-                    GameManager.PrintToConsole("Player", "PlayerAnimation{GET}", "Player Object is Missing Requested PlayerAnimation Component!", LogType.Error);
+                    GameManager.PrintToConsole("Player", "PlayerAnimation<GET>", "Player Object is Missing Requested PlayerAnimation Component!", LogType.Error);
                     return null;
                 }
             }
@@ -74,7 +74,7 @@ namespace Dev.NucleaTNT.Vigilante.PlayerScripts
                 if (_playerMovement != null) return _playerMovement;
                 else 
                 {
-                    GameManager.PrintToConsole("Player", "PlayerMovement{GET}", "Player Object is Missing Requested PlayerMovement Component!", LogType.Error);
+                    GameManager.PrintToConsole("Player", "PlayerMovement<GET>", "Player Object is Missing Requested PlayerMovement Component!", LogType.Error);
                     return null;
                 }
             }
@@ -92,7 +92,7 @@ namespace Dev.NucleaTNT.Vigilante.PlayerScripts
                 if (_GameManager != null) return _GameManager;
                 else 
                 {
-                    GameManager.PrintToConsole("Player", "GameManager{GET}", "There is no active GameManager in current scene!", LogType.Error);
+                    GameManager.PrintToConsole("Player", "GameManager<GET>", "There is no active GameManager in current scene!", LogType.Error);
                     return null;
                 }
             }
@@ -110,7 +110,6 @@ namespace Dev.NucleaTNT.Vigilante.PlayerScripts
             private set 
             {
                 _currentHealth = (value >= 0) ? ((value > _maxHealth) ? _maxHealth : value) : 0;
-                _isAlive = (_currentHealth > 0);
             }
         }
         
@@ -126,7 +125,7 @@ namespace Dev.NucleaTNT.Vigilante.PlayerScripts
             }
         }
     
-        public bool IsAlive => _isAlive;
+        public bool IsAlive => (_currentHealth > 0);
     
         // Base
         public Animator Animator {get; private set;}
@@ -169,6 +168,22 @@ namespace Dev.NucleaTNT.Vigilante.PlayerScripts
     
         #region Public Methods
     
+        public void EnvironmentUpdate(EnvironmentType environmentType, bool isEntering)
+        {
+            switch (environmentType)
+            {
+                case EnvironmentType.GROUND:
+                    IsSwimming = !isEntering;
+                    break;
+
+                case EnvironmentType.WATER:
+                    IsSwimming = isEntering;
+                    break;
+
+                default: break;
+            }
+        }
+
         #endregion
     
         #region MonoBehaviour Callbacks
@@ -194,7 +209,7 @@ namespace Dev.NucleaTNT.Vigilante.PlayerScripts
                 }
             }
         }
-    
+
         #endregion
     }
 }

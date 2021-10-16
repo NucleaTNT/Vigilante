@@ -16,6 +16,7 @@ namespace Dev.NucleaTNT.Vigilante.BattleMode
         [SerializeField] private Transform enemyBattlePos;
         private BattleEntity _playerBattleEntity, _enemyBattleEntity;
 
+        /* For TESTING */
         [SerializeField] private EntityInfo _pEI, _eEI;
 
         private static BattleManager s_instance;

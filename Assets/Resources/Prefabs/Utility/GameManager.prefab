@@ -244,8 +244,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4136432397382213995}
-  - component: {fileID: 1875226475777370436}
-  - component: {fileID: 8878137562997263350}
+  - component: {fileID: 1800801789256501385}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -268,7 +267,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1875226475777370436
+--- !u!114 &1800801789256501385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,24 +279,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acbff4cd1810b704eb64e13356f422a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  versionInfo: {fileID: 11400000, guid: b9d42af5978bc4e498b6bf7504f72f4d, type: 2}
-  debugCanvasObj: {fileID: 7028637840525506737}
-  versionNumberText: {fileID: 6628035322666145165}
-  changeLogPanel: {fileID: 2615673568788942433}
-  changeLogText: {fileID: 6415677567813400404}
-  _CurrentSeason: 0
---- !u!114 &8878137562997263350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4136432397382213992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00228cf0708141f43a4c6f7370cc30bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _versionInfo: {fileID: 11400000, guid: b89b65f89c1fd0847abe9f1dd9e5f3c0, type: 2}
+  _debugCanvasObj: {fileID: 7028637840525506737}
+  _versionNumberText: {fileID: 6628035322666145165}
+  _changeLogPanel: {fileID: 2615673568788942433}
+  _changeLogText: {fileID: 6415677567813400404}
+  _currentSeason: 0
 --- !u!1 &6755349467026010753
 GameObject:
   m_ObjectHideFlags: 0

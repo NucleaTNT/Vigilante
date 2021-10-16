@@ -45,7 +45,7 @@ SpriteAtlas:
     packables:
     - {fileID: 102900000, guid: 6089956dfbb6f2a409933e6791f33ee3, type: 3}
     - {fileID: 102900000, guid: 2890f0e1d88415d4182556a9119b5c81, type: 3}
-    totalSpriteSurfaceArea: 630432
+    totalSpriteSurfaceArea: 880432
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -272,6 +272,7 @@ SpriteAtlas:
   - {fileID: 6766422827890962009, guid: a2bc4d30b2f2bdc4ea1cb274671b4b05, type: 3}
   - {fileID: 21300000, guid: 9b0ea192ebff0cd4eba68572e14e15c6, type: 3}
   - {fileID: 21300000, guid: cfd7ab63c1aa304439d71611df10798d, type: 3}
+  - {fileID: 21300000, guid: 664cd49393e706b448a462c70d34b3e7, type: 3}
   - {fileID: 21300000, guid: 205e5f3524365cf44af80b964c178b71, type: 3}
   - {fileID: 6048636390309975317, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
   - {fileID: -4235785552944468484, guid: 9caf4f85542e1e445b5660f638d1c154, type: 3}
@@ -2435,6 +2436,7 @@ SpriteAtlas:
   - SummerOverworld_183
   - PlayerHead
   - PlayerPants
+  - TransparentMii
   - BattleHUD
   - FallOverworld_73
   - FallOverworld_78

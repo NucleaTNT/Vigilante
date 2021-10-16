@@ -18,16 +18,16 @@ namespace Dev.NucleaTNT.Vigilante.Utilities
         private static GameManager s_instance;
         public static GameManager Instance => s_instance;
     
-        private static bool s_wasFadeEntry = true;
-        private string _consoleOutput;
         
         // Debug Screen Properties
+        private string _consoleOutput;
         [SerializeField] private VersionInfo _versionInfo;
         private bool _showDebugScreen;
         [SerializeField] private GameObject _debugCanvasObj;
         [SerializeField] private Text _versionNumberText;
         [SerializeField] private GameObject _changeLogPanel;
         [SerializeField] private Text _changeLogText;
+        [SerializeField] private static DebugVars s_debugVars;
     
         // Input Handling
         private MainInputMap _mainInputMap;
@@ -40,8 +40,6 @@ namespace Dev.NucleaTNT.Vigilante.Utilities
     
         #region Public Properties
     
-        public MainInputMap MainInputMap { get; private set; }
-        public string VersionNumber { get; private set; }
         public Season CurrentSeason 
         { 
             get { return _currentSeason; }
@@ -52,7 +50,19 @@ namespace Dev.NucleaTNT.Vigilante.Utilities
                 StaticCoroutine.Start(UpdateAllTilemaps());
             }
         }
+        public MainInputMap MainInputMap { get; private set; }
+        public string VersionNumber { get; private set; }
     
+        public static DebugVars DebugVars 
+        { 
+            get 
+            { 
+                if (s_debugVars == null) s_debugVars = Resources.Load<DebugVars>("ScriptableObjects/DebugVars");
+                if (s_debugVars == null) PrintToConsole("GameManager", "DebugVars<GET>", "Couldn't load DebugVars Obj.", LogType.Error);
+                return s_debugVars;
+            }
+        }
+
         #endregion
     
         #region Private Methods
@@ -76,9 +86,6 @@ namespace Dev.NucleaTNT.Vigilante.Utilities
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode) 
         {
             GameManager.PrintToConsole("GameManager", "OnSceneLoaded", $"Loaded Scene \"{scene.name}\".");
-            if (s_wasFadeEntry)
-                try { GameObject.FindGameObjectWithTag("VCam").GetComponent<Animator>().Play("FadeIn"); } 
-                catch (NullReferenceException) { PrintToConsole("GameManager", "OnSceneLoaded", "Couldn't play FadeIn animation (was virtual camera disabled?).", LogType.Error); }
         }
     
         private void SingletonCheck()
@@ -146,43 +153,9 @@ namespace Dev.NucleaTNT.Vigilante.Utilities
             SceneManager.LoadScene(buildIndex); 
         }
     
-        public static void LoadSceneWithTransition(string sceneName, bool isFadeEntry = true, bool isSpinExit = false)
-        {
-            s_wasFadeEntry = isFadeEntry;
-            StaticCoroutine.Start(LoadSceneTransition(sceneName, isSpinExit));
-        }
-    
-        public static void LoadSceneWithTransition(int buildIndex, bool isFadeEntry = true, bool isSpinExit = false)
-        {
-            s_wasFadeEntry = isFadeEntry;
-            StaticCoroutine.Start(LoadSceneTransition(buildIndex, isSpinExit));
-        }
-    
         #endregion
         
         #region Coroutines
-    
-        private static IEnumerator LoadSceneTransition(string sceneName, bool isSpinExit) 
-        {
-            Animator camAnim = GameObject.FindGameObjectWithTag("VCam").GetComponent<Animator>();
-            camAnim.SetBool("isSpinExit", isSpinExit);
-            camAnim.SetTrigger("Exit Scene");
-    
-            yield return new WaitForSeconds(isSpinExit ? 3.5f : 1f);
-    
-            LoadScene(sceneName);
-        }
-    
-        private static IEnumerator LoadSceneTransition(int buildIndex, bool isSpinExit) 
-        {
-            Animator camAnim = GameObject.FindGameObjectWithTag("VCam").GetComponent<Animator>();
-            camAnim.SetBool("isSpinExit", isSpinExit);
-            camAnim.SetTrigger("Exit Scene");
-    
-            yield return new WaitForSeconds(isSpinExit ? 3.5f : 1f);
-    
-            LoadScene(buildIndex);
-        }
 
         private IEnumerator UpdateAllTilemaps() 
         {

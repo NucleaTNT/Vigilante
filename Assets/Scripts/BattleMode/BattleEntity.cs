@@ -5,8 +5,8 @@ namespace Dev.NucleaTNT.Vigilante.BattleMode
 {   
     public class BattleEntity : MonoBehaviour, IHealth
     {
-        private bool _isInitialized;
         private int _currentHealth, _maxHealth;
+        private bool _isInitialized;
 
         private bool _isAlive;
         public bool IsAlive => _isAlive;
@@ -44,9 +44,9 @@ namespace Dev.NucleaTNT.Vigilante.BattleMode
 
         public virtual void InitializeEntity(EntityInfo entityInfo) 
         {
-            this.MaxHealth = entityInfo.MaxHealth;
-            this.CurrentHealth = entityInfo.CurrentHealth;
             this.EntityName = entityInfo.EntityName;
+            this.CurrentHealth = entityInfo.CurrentHealth;
+            this.MaxHealth = entityInfo.MaxHealth;
         }
     }
 }

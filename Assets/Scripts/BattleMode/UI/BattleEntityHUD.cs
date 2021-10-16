@@ -7,14 +7,14 @@ namespace Dev.NucleaTNT.Vigilante.BattleMode.UI
 {
     public class BattleEntityHUD : MonoBehaviour
     {
-        [SerializeField] private HealthBarHandler _healthBarHandler;
+        private bool _isAlreadyInitialized;
         [SerializeField] private Text _entityNameText;
-        private bool _alreadyInitialized;
+        [SerializeField] private HealthBarHandler _healthBarHandler;
     
         public void InitHUD(EntityInfo entityInfo) 
         {
-            if (_alreadyInitialized) { GameManager.PrintToConsole("BattleEntityHUD", "InitHUD", "This HUD has already been initialized!", LogType.Warning); return; }
-            _alreadyInitialized = true;
+            if (_isAlreadyInitialized) { GameManager.PrintToConsole("BattleEntityHUD", "InitHUD", "This HUD has already been initialized!", LogType.Warning); return; }
+            _isAlreadyInitialized = true;
 
             _entityNameText.text = entityInfo.EntityName;
             _healthBarHandler.InitializeHealthBar(entityInfo.CurrentHealth, entityInfo.MaxHealth);

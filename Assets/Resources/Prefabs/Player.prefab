@@ -229,7 +229,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.1875}
+  m_Size: {x: 0.25, y: 0.1875}
   m_EdgeRadius: 0
 --- !u!50 &4108866444366926718
 Rigidbody2D:
@@ -250,7 +250,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &4108866444366926713
 Animator:
@@ -285,7 +285,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentHealth: 20
   _maxHealth: 20
-  _isAlive: 0
   MovementSpeed: 3
   CurrentState: 0
 --- !u!114 &4108866444366926714
