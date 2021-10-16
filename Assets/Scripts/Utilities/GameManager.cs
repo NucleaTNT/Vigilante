@@ -47,7 +47,7 @@ namespace Dev.NucleaTNT.Vigilante.Utilities
             set
             {
                 _currentSeason = value;
-                StaticCoroutine.Start(UpdateAllTilemaps());
+                UpdateAllTilemaps();
             }
         }
         public MainInputMap MainInputMap { get; private set; }
@@ -116,6 +116,12 @@ namespace Dev.NucleaTNT.Vigilante.Utilities
                 }
             }
         }
+        
+        private void UpdateAllTilemaps() 
+        {
+            if (_tilemaps.Length == 0) GetAllTilemaps();
+            foreach (Tilemap tilemap in _tilemaps) tilemap.RefreshAllTiles();
+        }
     
         #endregion
     
@@ -151,18 +157,6 @@ namespace Dev.NucleaTNT.Vigilante.Utilities
         {
             GameManager.PrintToConsole("GameManager", "LoadScene", $"Loading Scene #{buildIndex}."); 
             SceneManager.LoadScene(buildIndex); 
-        }
-    
-        #endregion
-        
-        #region Coroutines
-
-        private IEnumerator UpdateAllTilemaps() 
-        {
-            if (this._tilemaps.Length == 0) GetAllTilemaps();
-            foreach (Tilemap tilemap in this._tilemaps) tilemap.RefreshAllTiles();
-            
-            return null;
         }
     
         #endregion
